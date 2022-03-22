@@ -5,7 +5,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { data: beta_list } = await supabase.from("beta_list").select("*");
+  const {
+    body: { email, handle, firstName, lastName },
+  } = req;
 
-  res.status(200).json({ beta_list });
+  const { data, error } = await supabase
+    .from("essays_waitlist")
+    .insert([{ email, handle }]);
+
+  // const { data: beta_list } = await supabase.from("beta_list").select("*");
+
+  res.status(200).json({ message: "Success" });
 }

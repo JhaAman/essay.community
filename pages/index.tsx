@@ -1,7 +1,9 @@
+import axios from "axios";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { ReactNode, useState } from "react";
+import { url } from "_/lib/isDev";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 
@@ -9,6 +11,33 @@ const Home: NextPage = () => {
   const [email, setEmail] = useState("");
   const [handle, setHandle] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios
+      .post(url("/api/waitlist-signup"), {
+        email: email,
+        handle: handle,
+        source: "essays.community (web)",
+      })
+      .then((response) => {
+        console.info(`Successfully added ${email} to waitlist`);
+        setIsOpen(true);
+        // TODO: Set loading dots for the get access button here
+        // TODO: once submitted, change CTA to say thanks!
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          setErrorContent("You are already on the waitlist!");
+        }
+        console.error(error);
+
+        setIsErrorOpen(true);
+      });
+
+    setSubmitted(true);
+  };
 
   return (
     <div className="flex flex-col items-center justify-between w-full h-screen py-10 text-white bg-dark">
