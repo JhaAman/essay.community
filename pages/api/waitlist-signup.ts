@@ -13,6 +13,8 @@ export default async function handler(
     .from("essays_waitlist")
     .upsert([{ email, handle, source }]);
 
+  error ? console.error(error) : console.log(data);
+
   // const { data: beta_list } = await supabase.from("beta_list").select("*");
 
   res.status(200).json({ message: "Success" });
