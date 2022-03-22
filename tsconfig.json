@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "_/CommonUI/*": ["components/UI/*"],
+      "_/api/*": ["pages/api/*"],
+      "_/atoms/*": ["recoil/atoms/*"],
+      "_/selectors/*": ["recoil/selectors/*"],
+      "_/*": ["./*"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
