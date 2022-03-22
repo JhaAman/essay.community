@@ -1,0 +1,32 @@
+.root {
+  @apply text-white bg-primary rounded cursor-pointer inline-flex px-10 leading-6  transition ease-in-out duration-150 shadow-sm font-semibold text-center justify-center uppercase py-4  items-center;
+}
+
+.root:hover {
+  @apply bg-primary-600;
+}
+
+.root:focus {
+  @apply outline-none bg-primary-700;
+}
+
+.root[data-active] {
+  @apply bg-gray-600;
+}
+
+.loading {
+  @apply bg-transparent text-white border-gray-600 cursor-not-allowed;
+}
+
+.slim {
+  @apply py-2 transform-none normal-case;
+}
+
+.disabled,
+.disabled:hover {
+  @apply text-gray-400 border-gray-600 bg-gray-700 cursor-not-allowed;
+  filter: grayscale(1);
+  -webkit-transform: translateZ(0);
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+}
