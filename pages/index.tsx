@@ -6,6 +6,7 @@ import { ReactNode, useState } from "react";
 import { url } from "_/lib/isDev";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
+import * as Separator from "@radix-ui/react-separator";
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState("");
@@ -36,8 +37,8 @@ const Home: NextPage = () => {
     <div className="flex flex-col items-center justify-between w-full h-screen py-10 text-white bg-dark">
       <div className="text-xl tracking-widest uppercase">essay community</div>
       <div className="flex flex-col items-center">
-        <h1 className="mb-3 font-semibold text-7xl">Your Best Essays Yet</h1>
-        <h2 className="text-xl text-center whitespace-pre">
+        <h1 className="mb-3 font-medium text-7xl">Your Best Essays Yet</h1>
+        <h2 className="text-lg text-center text-gray-300 whitespace-pre">
           {
             "Essays with the depth of a Paul Graham essay,\nwith the reader engagement of a Twitter thread"
           }
@@ -78,21 +79,20 @@ const Home: NextPage = () => {
             <h1 className="mb-1 text-xl font-semibold text-primary-400">
               Thanks!
             </h1>
-            <h2 className="text-sm text-center whitespace-pre">
+            <h2 className="text-sm text-center text-gray-300 whitespace-pre">
               Want updates? Follow{" "}
               <ExternalLink href="https://www.twitter.com/amanjha__">
-                <span className="text-blue-400 ">@amanjha__</span>
+                <span className="">@amanjha__</span>
               </ExternalLink>
-              .
             </h2>
           </div>
         )}
       </div>
       <div>
-        <p className="text-sm">
+        <p className="text-sm text-gray-300">
           a production by{" "}
           <ExternalLink href="https://www.amanjha.dev">
-            <span className="text-blue-400 ">aman jha</span>
+            <span className="">aman jha</span>
           </ExternalLink>
           .
         </p>
@@ -110,7 +110,12 @@ export const ExternalLink = ({
   href: string;
   children: ReactNode;
 }) => (
-  <a target="_blank" rel="noopener noreferrer" href={href}>
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href={href}
+    className="font-semibold text-white"
+  >
     {children}
   </a>
 );
