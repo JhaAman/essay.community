@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import Input from "../components/UI/Input";
 
 const Home: NextPage = () => {
+  const [email, setEmail] = useState("");
+  const [handle, setHandle] = useState("");
   return (
     <div className="flex flex-col items-center justify-between w-full h-screen py-10 text-white bg-dark">
       <div className="text-xl tracking-widest uppercase">essay community</div>
@@ -15,7 +18,15 @@ const Home: NextPage = () => {
           }
         </h2>
 
-        <div className="flex "></div>
+        <form className="flex ">
+          <Input
+            onChange={setEmail}
+            value={email}
+            required={true}
+            type="email"
+            placeholder="Your favorite email"
+          />
+        </form>
       </div>
       <div>
         <p className="text-sm">
