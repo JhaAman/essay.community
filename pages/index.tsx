@@ -19,24 +19,17 @@ const Home: NextPage = () => {
       .post(url("/api/waitlist-signup"), {
         email: email,
         handle: handle,
-        source: "essays.community (web)",
+        source: "essay.community (web)",
       })
       .then((response) => {
         console.info(`Successfully added ${email} to waitlist`);
-        setIsOpen(true);
+        setSubmitted(true);
         // TODO: Set loading dots for the get access button here
         // TODO: once submitted, change CTA to say thanks!
       })
       .catch((error) => {
-        if (error.response.status === 409) {
-          setErrorContent("You are already on the waitlist!");
-        }
         console.error(error);
-
-        setIsErrorOpen(true);
       });
-
-    setSubmitted(true);
   };
 
   return (
@@ -53,7 +46,7 @@ const Home: NextPage = () => {
         {!submitted && (
           <form
             className="flex flex-col items-center justify-center mt-6"
-            onSubmit={() => setSubmitted(!submitted)}
+            onSubmit={handleSubmit}
           >
             <div className="flex gap-3 my-3">
               <Input

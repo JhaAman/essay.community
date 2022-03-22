@@ -6,12 +6,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const {
-    body: { email, handle, firstName, lastName },
+    body: { email, handle, source },
   } = req;
 
   const { data, error } = await supabase
     .from("essays_waitlist")
-    .insert([{ email, handle }]);
+    .upsert([{ email, handle, source }]);
 
   // const { data: beta_list } = await supabase.from("beta_list").select("*");
 
