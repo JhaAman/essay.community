@@ -35,6 +35,11 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-between w-full h-screen py-10 text-white bg-dark">
+      <Head>
+        <title>Essay Community</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+
       <div className="text-xl tracking-widest uppercase">essay community</div>
       <div className="flex flex-col items-center">
         <h1 className="mb-3 font-medium text-7xl">Your Best Essays Yet</h1>
