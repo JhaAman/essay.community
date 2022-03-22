@@ -11,7 +11,7 @@ export default async function handler(
 
   const { data, error } = await supabase
     .from("essays_waitlist")
-    .upsert([{ email, handle, source }]);
+    .insert([{ email, handle, source }]);
 
   error ? console.error(error) : console.log(data);
 
