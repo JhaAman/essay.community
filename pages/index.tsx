@@ -2,11 +2,14 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { ReactNode, useState } from "react";
+import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState("");
   const [handle, setHandle] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
   return (
     <div className="flex flex-col items-center justify-between w-full h-screen py-10 text-white bg-dark">
       <div className="text-xl tracking-widest uppercase">essay community</div>
@@ -18,15 +21,50 @@ const Home: NextPage = () => {
           }
         </h2>
 
-        <form className="flex ">
-          <Input
-            onChange={setEmail}
-            value={email}
-            required={true}
-            type="email"
-            placeholder="Your favorite email"
-          />
-        </form>
+        {!submitted && (
+          <form
+            className="flex flex-col items-center justify-center mt-6"
+            onSubmit={() => setSubmitted(!submitted)}
+          >
+            <div className="flex gap-3 my-3">
+              <Input
+                className=""
+                variant="dark"
+                onChange={setEmail}
+                value={email}
+                required={true}
+                type="email"
+                placeholder="Your favorite email *"
+              />
+              <Input
+                onChange={setHandle}
+                variant="dark"
+                value={handle}
+                required={false}
+                type="text"
+                placeholder="Your Twitter @handle"
+              />
+            </div>
+            <Button className="" variant="slim" type="submit">
+              {"Cool, lmk when it's out"}
+            </Button>
+          </form>
+        )}
+
+        {submitted && (
+          <div className="flex flex-col items-center justify-center mt-12 ">
+            <h1 className="mb-1 text-xl font-semibold text-primary-400">
+              Thanks!
+            </h1>
+            <h2 className="text-sm text-center whitespace-pre">
+              Want updates? Follow{" "}
+              <ExternalLink href="https://www.twitter.com/amanjha__">
+                <span className="text-blue-400 ">@amanjha__</span>
+              </ExternalLink>
+              .
+            </h2>
+          </div>
+        )}
       </div>
       <div>
         <p className="text-sm">
@@ -34,6 +72,7 @@ const Home: NextPage = () => {
           <ExternalLink href="https://www.amanjha.dev">
             <span className="text-blue-400 ">aman jha</span>
           </ExternalLink>
+          .
         </p>
       </div>
     </div>
