@@ -12,10 +12,11 @@ const Home: NextPage = () => {
   const [email, setEmail] = useState("");
   const [handle, setHandle] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setLoading(true);
     axios
       .post(url("/api/waitlist-signup"), {
         email: email,
@@ -25,11 +26,13 @@ const Home: NextPage = () => {
       .then((response) => {
         console.info(`Successfully added ${email} to waitlist`);
         setSubmitted(true);
+        setLoading(false);
         // TODO: Set loading dots for the get access button here
         // TODO: once submitted, change CTA to say thanks!
       })
       .catch((error) => {
         console.error(error);
+        alert(error);
       });
   };
 
@@ -73,7 +76,7 @@ const Home: NextPage = () => {
                 placeholder="Your Twitter @handle"
               />
             </div>
-            <Button className="" variant="slim" type="submit">
+            <Button className="" variant="slim" type="submit" loading={loading}>
               {"Cool, lmk when it's out"}
             </Button>
           </form>

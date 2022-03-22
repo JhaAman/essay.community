@@ -6,5 +6,5 @@ export const url = (path: string) => {
   if (isDev()) {
     return `http://localhost:3000${path}`;
   }
-  return `https://www.essays.community${path}`;
+  return `https://www.essay.community${path}`;
 };
