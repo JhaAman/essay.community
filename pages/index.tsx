@@ -1,11 +1,12 @@
-import axios from "axios";
+import { ReactNode, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { ReactNode, useState } from "react";
+import axios from "axios";
+
 import { url } from "_/lib/isDev";
-import Button from "../components/UI/Button";
-import Input from "../components/UI/Input";
+import Button from "_/components/UI/Button";
+import Input from "_/components/UI/Input";
 import * as Separator from "@radix-ui/react-separator";
 
 const Home: NextPage = () => {
@@ -27,8 +28,6 @@ const Home: NextPage = () => {
         console.info(`Successfully added ${email} to waitlist`);
         setSubmitted(true);
         setLoading(false);
-        // TODO: Set loading dots for the get access button here
-        // TODO: once submitted, change CTA to say thanks!
       })
       .catch((error) => {
         console.error(error);
