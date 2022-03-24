@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
+    "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "lint": "next lint",
+    "prebuild": "prisma generate",
+    "predev": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
     "start": "next start",
-    "lint": "next lint"
+    "type-check": "tsc"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
